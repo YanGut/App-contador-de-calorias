@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".FormCadastro"
+        >
+
+       <TextView
+           android:id="@+id/title_register"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/title_register"
+           android:textSize="50sp"
+           android:textColor="@color/white"
+           android:textStyle="bold"
+           android:layout_margin="50dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           />
+
+        <View
+            android:id="@+id/container_components"
+            style="@style/ContainerComponentsRegisterScreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_register"
+            />
+
+        <EditText
+            android:id="@+id/name_register"
+            style="@style/Edit_Text"
+            android:hint="Name"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toTopOf="@id/container_components"
+            />
+
+        <EditText
+            android:id="@+id/age"
+            style="@style/Edit_Text"
+            android:hint="Age"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/name_register"
+            />
+
+        <EditText
+            android:id="@+id/weight"
+            style="@style/Edit_Text"
+            android:hint="Weight"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/age"
+            />
+
+        <EditText
+            android:id="@+id/height"
+            style="@style/Edit_Text"
+            android:hint="Height"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/weight"
+            />
+
+        <EditText
+            android:id="@+id/activity"
+            style="@style/Edit_Text"
+            android:hint="Activity"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/height"
+            />
+
+        <EditText
+            android:id="@+id/body_fat"
+            style="@style/Edit_Text"
+            android:hint="Body Fat %"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/weight"
+            />
+
+        <EditText
+            android:id="@+id/gender"
+            style="@style/Edit_Text"
+            android:hint="Gender"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/activity"
+            />
+
+        <EditText
+            android:id="@+id/email_define"
+            style="@style/Edit_Text"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:drawableRight="@drawable/icon_email"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/gender"
+            />
+
+        <EditText
+            android:id="@+id/password_define"
+            style="@style/Edit_Text"
+            android:hint="Password"
+            android:inputType="numberPassword"
+            android:drawableRight="@drawable/icon_eye"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/email_define"
+            />
+        
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Login_Button"
+            android:text="@string/register"
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintEnd_toEndOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/password_define"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

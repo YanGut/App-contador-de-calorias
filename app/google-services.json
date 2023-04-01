@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061907158085",
+    "project_id": "contadordecalorias-31773",
+    "storage_bucket": "contadordecalorias-31773.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061907158085:android:620bba8567580003143f2c",
+        "android_client_info": {
+          "package_name": "com.example.contadordecalorias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061907158085-vv8tgqakkupuvnsgd08clma3fevtqgdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDARneRf9Y-vCYoFtAbhi1zclHYMu-7YyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061907158085-vv8tgqakkupuvnsgd08clma3fevtqgdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

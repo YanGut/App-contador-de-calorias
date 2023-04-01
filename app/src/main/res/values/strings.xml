@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Contador De Calorias</string>
+    <string name="login">LOGIN</string>
+    <string name="register_text_login_screen">Create a account clicking here!</string>
+    <string name="title_register">Register</string>
+    <string name="register">REGISTER</string>
+</resources>
