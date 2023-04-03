@@ -33,11 +33,12 @@
             android:id="@+id/container_components"
             style="@style/ContainerComponentsRegisterScreen"
             android:layout_marginBottom="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_register"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_register"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/name_register"
@@ -130,15 +131,15 @@
             app:layout_constraintEnd_toEndOf="@id/container_components"
             app:layout_constraintTop_toBottomOf="@id/email_define"
             />
-        
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_button"
             style="@style/Login_Button"
+            android:onClick="registerUser"
             android:text="@string/register"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/password_define"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/password_define" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
