@@ -49,7 +49,7 @@ public class FormCadastro extends AppCompatActivity {
         String email = edit_email.getText().toString();
         String password = edit_password.getText().toString();
         String gender = edit_gender.getText().toString();
-        String activity = edit_activity.getText().toString();
+        int activity = Integer.parseInt(edit_activity.getText().toString());
 
         int age = Integer.parseInt(edit_age.getText().toString());
 
@@ -80,6 +80,8 @@ public class FormCadastro extends AppCompatActivity {
                                 snackbar.setBackgroundTint(Color.WHITE);
                                 snackbar.setTextColor(Color.BLACK);
                                 snackbar.show();
+
+                                FormCadastro.this.finish();
                             })
                             .addOnFailureListener(e -> {
                                 Snackbar snackbar = Snackbar.make(v, messages[2], Snackbar.LENGTH_SHORT);

@@ -59,11 +59,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_button"
             style="@style/Login_Button"
+            android:onClick="loginUser"
             android:text="@string/login"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_password"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_password" />
 
         <ProgressBar
             android:id="@+id/progressbar"

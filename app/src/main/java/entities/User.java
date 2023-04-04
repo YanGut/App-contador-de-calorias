@@ -10,13 +10,13 @@ public class User {
     public double height;
     public double weight;
     public double fat;
-    public String activity;
+    public int activity;
     public String gender;
     public String email;
     public boolean adm;
 
 
-    public User(String name, int age, double height, double weight, double fat, String activity, String gender, String email){
+    public User(String name, int age, double height, double weight, double fat, int activity, String gender, String email){
         this.name = name;
         this.age = age;
         this.height = height;
