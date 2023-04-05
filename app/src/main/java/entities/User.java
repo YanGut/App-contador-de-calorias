@@ -7,16 +7,19 @@ public class User {
 
     public String name;
     public int age;
-    public double height;
+    public int height;
     public double weight;
     public double fat;
     public int activity;
     public String gender;
+    public Double basalMetabolicRate;
+    public Double totalMetabolicRate;
     public String email;
     public boolean adm;
 
 
-    public User(String name, int age, double height, double weight, double fat, int activity, String gender, String email){
+    public User(String name, int age, int height, double weight, double fat, int activity, String gender, String email,
+                double basalMetabolicRate, double totalMetabolicRate){
         this.name = name;
         this.age = age;
         this.height = height;
@@ -24,6 +27,8 @@ public class User {
         this.fat = fat;
         this.activity = activity;
         this.gender = gender;
+        this.basalMetabolicRate = calculateBasalMetabolicRate(weight, height, age, gender);
+        this.totalMetabolicRate = calculateTotalMetabolicRate(basalMetabolicRate, activity);
         this.email = email;
         this.adm = false;
     }
@@ -40,6 +45,45 @@ public class User {
         result.put("email", email);
         result.put("adm", adm);
         return result;
+    }
+
+    public static Double calculateBasalMetabolicRate(double mass, int height, int age, String gender) {
+
+        double basalMetabolicRate = 0;
+
+        double calculation = (13.75 * mass) + (5 * height) - (6.76 * age);
+
+        if (gender == "male") {
+            basalMetabolicRate = calculation + 88.36;
+        } else if (gender == "female") {
+            basalMetabolicRate = calculation + 447.6;
+        }
+        return basalMetabolicRate;
+    }
+
+    public static Double calculateTotalMetabolicRate(Double basalMetabolicRate, int activity) {
+
+        Double totalMetabolicRate = 0.0;
+
+        switch (activity) {
+            case 1:
+                totalMetabolicRate = basalMetabolicRate * 1.2;
+                break;
+            case 2:
+                totalMetabolicRate = basalMetabolicRate * 1.375;
+                break;
+            case 3:
+                totalMetabolicRate = basalMetabolicRate * 1.55;
+                break;
+            case 4:
+                totalMetabolicRate = basalMetabolicRate * 1.725;
+                break;
+            case 5:
+                totalMetabolicRate = basalMetabolicRate * 1.9;
+                break;
+        }
+
+        return totalMetabolicRate;
     }
 
 }

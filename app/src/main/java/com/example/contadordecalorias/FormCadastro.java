@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import entities.User;
 
-public class FormCadastro extends AppCompatActivity {
+public class        FormCadastro extends AppCompatActivity {
 
     private EditText edit_name, edit_email, edit_password, edit_gender, edit_activity, edit_age, edit_height, edit_weight, edit_fat;
     private Button btn_register;
@@ -53,9 +53,12 @@ public class FormCadastro extends AppCompatActivity {
 
         int age = Integer.parseInt(edit_age.getText().toString());
 
-        float height = Float.parseFloat(edit_height.getText().toString());
+        int height = Integer.parseInt(edit_height.getText().toString());
         float weight = Float.parseFloat(edit_weight.getText().toString());
         float fat = Float.parseFloat(edit_fat.getText().toString());
+
+        double basalMetabolicRate = User.calculateBasalMetabolicRate(weight, height, age, gender);
+        double totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
 
         //Condicional para exibir uma menssagem caso o usuário tente se cadastrar sem preencher todos os campos
         if(name.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -70,7 +73,7 @@ public class FormCadastro extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Cria um documento com as informações adicionais do usuário
 
-                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email);
+                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email, basalMetabolicRate, totalMetabolicRate);
 
                     String uid = task.getResult().getUser().getUid();
                     FirebaseFirestore.getInstance().collection("users").document(uid)
