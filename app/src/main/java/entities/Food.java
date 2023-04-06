@@ -23,6 +23,8 @@ public class Food {
         this.quantity = quantity;
     }
 
+    public Food(){}
+
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);

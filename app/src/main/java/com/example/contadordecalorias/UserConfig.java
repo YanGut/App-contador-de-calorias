@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,17 +34,12 @@ public class UserConfig extends AppCompatActivity {
         txt_name = findViewById(R.id.text_user_name);
         txt_email = findViewById(R.id.text_user_email);
 
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        alterarDados(user);
+
         getSupportActionBar().hide();
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-
-        Bundle extras = getIntent().getExtras();
-        FirebaseUser user = (FirebaseUser) extras.get("user");
-        alterarDados(user);
-    }
     private void alterarDados(FirebaseUser user){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String userId = user.getUid();
@@ -57,5 +54,11 @@ public class UserConfig extends AppCompatActivity {
                 Log.d(TAG, "No such document");
             }
         }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
+    }
+
+    public void logout(View v){
+        FirebaseAuth.getInstance().signOut();
+
+        UserConfig.this.finish();
     }
 }

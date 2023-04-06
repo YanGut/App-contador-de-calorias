@@ -59,7 +59,6 @@ public class FormLogin extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
 
                     Intent intent = new Intent(FormLogin.this, UserConfig.class);
-                    intent.putExtra("user",user);
                     startActivity(intent);
                 }else{
                     // Usuário não localizado
