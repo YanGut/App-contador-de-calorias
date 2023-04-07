@@ -37,24 +37,26 @@
         <EditText
             android:id="@+id/edit_email"
             style="@style/Edit_Text"
-            android:hint="Email:"
             android:drawableRight="@drawable/icon_email"
+            android:hint="Email:"
             android:inputType="textEmailAddress"
-            app:layout_constraintStart_toStartOf="@id/container_components"
+            android:textColor="#000000"
+            android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toTopOf="@id/container_components"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toTopOf="@id/container_components" />
 
         <EditText
             android:id="@+id/edit_password"
             style="@style/Edit_Text"
-            android:hint="Password:"
             android:drawableRight="@drawable/icon_eye"
+            android:hint="Password:"
             android:inputType="numberPassword"
-            app:layout_constraintStart_toStartOf="@id/container_components"
+            android:textColor="#000000"
+            android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/edit_email"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/edit_email" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_button"
@@ -72,10 +74,9 @@
             android:layout_marginTop="20dp"
             android:indeterminateTint="@color/white"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container_components"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_components" />
 
         <TextView
             android:id="@+id/text_screen_register"

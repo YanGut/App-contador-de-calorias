@@ -25,7 +25,6 @@ public class        FormCadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_cadastro);
 
-        getSupportActionBar().hide();
         startComponents();
     }
 

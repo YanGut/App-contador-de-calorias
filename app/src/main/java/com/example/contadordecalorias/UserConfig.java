@@ -37,7 +37,6 @@ public class UserConfig extends AppCompatActivity {
        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         alterarDados(user);
 
-        getSupportActionBar().hide();
     }
 
     private void alterarDados(FirebaseUser user){
