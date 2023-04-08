@@ -1,14 +1,25 @@
 package com.example.contadordecalorias.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.contadordecalorias.R;
+import com.example.contadordecalorias.UserConfig;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import entities.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +27,8 @@ import com.example.contadordecalorias.R;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
+
+    public TextView txt_name, txt_email;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +68,8 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override

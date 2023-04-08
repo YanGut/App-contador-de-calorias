@@ -48,6 +48,7 @@ public class FormLogin extends AppCompatActivity {
 
         if(email.equals("") || password.equals("")){
             // Campos não preenchidos
+
             Snackbar snackbar = Snackbar.make(v, messages[0], Snackbar.LENGTH_SHORT);
             snackbar.setBackgroundTint(Color.WHITE);
             snackbar.setTextColor(Color.BLACK);
@@ -57,7 +58,7 @@ public class FormLogin extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser user = auth.getCurrentUser();
 
-                    Intent intent = new Intent(FormLogin.this, UserConfig.class);
+                    Intent intent = new Intent(FormLogin.this, MainActivity.class);
                     startActivity(intent);
                 }else{
                     // Usuário não localizado

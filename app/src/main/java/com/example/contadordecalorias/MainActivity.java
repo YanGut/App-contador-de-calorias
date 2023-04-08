@@ -23,14 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         initNavigation();
+
+
         //Database-------------------------------------
         DBAdapter db = new DBAdapter(this);
         db.open();
         db.close();
 
         Toast.makeText(this, "Database funciona, e a comida foi criada!!!", Toast.LENGTH_SHORT).show();
+
     }
 
     private void initNavigation(){
