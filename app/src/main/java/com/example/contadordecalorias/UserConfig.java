@@ -55,9 +55,5 @@ public class UserConfig extends AppCompatActivity {
         }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
     }
 
-    public void logout(View v){
-        FirebaseAuth.getInstance().signOut();
 
-        UserConfig.this.finish();
-    }
 }

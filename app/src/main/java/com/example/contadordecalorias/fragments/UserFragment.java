@@ -28,7 +28,7 @@ import entities.User;
  */
 public class UserFragment extends Fragment {
 
-    public TextView txt_name, txt_email;
+    public TextView txt_name, txt_email, txt_age, txt_height, txt_weight, txt_gender;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +68,8 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        alterarDados(user);
 
     }
 
@@ -76,6 +77,44 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
+        txt_name = view.findViewById(R.id.text_user_name);
+        String currentValueName = txt_name.getText().toString();
+
+        txt_email = view.findViewById(R.id.text_user_email);
+        String currentValueEmail = txt_email.getText().toString();
+
+        txt_gender = view.findViewById(R.id.text_user_gender);
+
+        txt_age = view.findViewById(R.id.text_user_age);
+
+        txt_height = view.findViewById(R.id.text_user_height);
+
+        txt_weight = view.findViewById(R.id.text_user_weight);
+
+
+        return view;
     }
+    private void alterarDados(FirebaseUser user){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = user.getUid();
+
+        DocumentReference docRef = db.collection("users").document(userId);
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if(documentSnapshot.exists()) {
+                User userLog = documentSnapshot.toObject(User.class);
+                txt_name.setText(userLog.name);
+                txt_email.setText(user.getEmail());
+                txt_gender.setText(String.valueOf(userLog.gender));
+                txt_age.setText(String.valueOf(userLog.age));
+                txt_height.setText(String.valueOf(userLog.height));
+                txt_weight.setText(String.valueOf(userLog.weight));
+            } else {
+                Log.d(TAG, "No such document");
+            }
+        }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
+    }
+
+
 }
