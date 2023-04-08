@@ -57,7 +57,7 @@ public class        FormCadastro extends AppCompatActivity {
         float fat = Float.parseFloat(edit_fat.getText().toString());
 
         double basalMetabolicRate = User.calculateBasalMetabolicRate(weight, height, age, gender);
-        double totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
+        int totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
 
         //Condicional para exibir uma menssagem caso o usuário tente se cadastrar sem preencher todos os campos
         if(name.isEmpty() || email.isEmpty() || password.isEmpty()) {

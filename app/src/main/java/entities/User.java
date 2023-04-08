@@ -13,13 +13,13 @@ public class User {
     public int activity;
     public String gender;
     public Double basalMetabolicRate;
-    public Double totalMetabolicRate;
+    public int totalMetabolicRate;
     public String email;
     public boolean adm;
 
 
     public User(String name, int age, int height, double weight, double fat, int activity, String gender, String email,
-                double basalMetabolicRate, double totalMetabolicRate){
+                double basalMetabolicRate, int totalMetabolicRate){
         this.name = name;
         this.age = age;
         this.height = height;
@@ -46,6 +46,8 @@ public class User {
         result.put("gender", gender);
         result.put("email", email);
         result.put("adm", adm);
+        result.put("basalMetabolicRate",basalMetabolicRate);
+        result.put("totalMetabolicRate",totalMetabolicRate);
         return result;
     }
 
@@ -54,16 +56,16 @@ public class User {
         double basalMetabolicRate = 0;
 
         double calculation = (13.75 * mass) + (5 * height) - (6.76 * age);
-
-        if (gender == "male") {
-            basalMetabolicRate = calculation + 88.36;
-        } else if (gender == "female") {
-            basalMetabolicRate = calculation + 447.6;
+ 
+        if (gender.equals("male")) {
+            basalMetabolicRate = calculation +  66.5;
+        } else if (gender.equals("female")) {
+            basalMetabolicRate = calculation + 665;
         }
         return basalMetabolicRate;
     }
 
-    public static Double calculateTotalMetabolicRate(Double basalMetabolicRate, int activity) {
+    public static int calculateTotalMetabolicRate(Double basalMetabolicRate, int activity) {
 
         Double totalMetabolicRate = 0.0;
 
@@ -84,8 +86,7 @@ public class User {
                 totalMetabolicRate = basalMetabolicRate * 1.9;
                 break;
         }
-
-        return totalMetabolicRate;
+        return totalMetabolicRate.intValue();
     }
 
 }
