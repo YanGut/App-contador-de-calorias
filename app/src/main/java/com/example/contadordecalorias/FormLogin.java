@@ -60,6 +60,7 @@ public class FormLogin extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
 
                     Intent intent = new Intent(FormLogin.this, MainActivity.class);
+//                    Intent intent = new Intent(FormLogin.this, Food_Select.class);
                     startActivity(intent);
                 }else{
                     // Usuário não localizado
