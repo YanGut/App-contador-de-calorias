@@ -6,31 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Food_Select">
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Pesquisar alimento"
-        android:inputType="textMultiLine"
-        android:textColorHint="#686868"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Lista"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_search"
+        tools:layout_editor_absoluteX="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
@@ -42,5 +25,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <SearchView
+        android:id="@+id/edt_search"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:queryHint="Search Here..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

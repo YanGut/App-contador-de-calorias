@@ -1,9 +1,14 @@
 package entities;
 
+import com.google.firebase.firestore.DocumentId;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Food {
+
+    @DocumentId
+    private String documentId;
     public String name;
     public int protein;
     public int calories;

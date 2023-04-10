@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import entities.Food;
 
@@ -61,5 +62,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             foodProtein = itemView.findViewById(R.id.txt_foodProtein);
             foodQuantity = itemView.findViewById(R.id.txt_foodQuantity);
         }
+    }
+
+    public void setFilteredList(ArrayList<Food> filteredList){
+        this.foodArrayList = filteredList;
+        notifyDataSetChanged();
     }
 }

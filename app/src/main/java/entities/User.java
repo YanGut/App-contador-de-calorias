@@ -1,10 +1,14 @@
 package entities;
 
+import com.google.firebase.firestore.DocumentId;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class User {
 
+    @DocumentId
+    private String documentId;
     public String name;
     public int age;
     public int height;
