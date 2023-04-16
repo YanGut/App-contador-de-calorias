@@ -30,9 +30,9 @@
            />
 
         <View
+            android:id="@+id/container_components"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            android:id="@+id/container_components"
             style="@style/ContainerComponentsRegisterScreen"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,8 @@
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_register"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            />
 
         <EditText
             android:id="@+id/name_register"

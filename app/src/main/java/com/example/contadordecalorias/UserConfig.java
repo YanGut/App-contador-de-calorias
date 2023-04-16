@@ -35,8 +35,7 @@ public class UserConfig extends AppCompatActivity {
         txt_email = findViewById(R.id.text_user_email);
 
        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        alterarDados(user);
-
+       alterarDados(user);
     }
 
     private void alterarDados(FirebaseUser user){

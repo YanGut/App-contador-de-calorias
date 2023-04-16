@@ -1,17 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DiaryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textSize="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:text="Diary" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/titulo_diario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:text="@string/diary_title"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo_diario">
+
+            <Button
+                android:id="@+id/cafe_da_manha_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/togglebutton"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Café da Manhã"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="30dp"
+                android:onClick="telaCafeDaManha"
+                />
+
+            <Button
+                android:id="@+id/almoco_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/togglebutton"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Almoço"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="30dp"
+                />
+
+            <Button
+                android:id="@+id/jantar_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/togglebutton"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Jantar"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="30dp"
+                />
+
+            <Button
+                android:id="@+id/lanche_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/togglebutton"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Lanche"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="30dp"
+                />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
