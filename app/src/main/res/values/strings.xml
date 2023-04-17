@@ -8,6 +8,8 @@
     <string name="menu_diary">Diary</string>
     <string name="menu_home">Home</string>
     <string name="menu_user">User</string>
+    <string name="diary_title">Diário</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
