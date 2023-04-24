@@ -15,19 +15,19 @@
         tools:context=".FormCadastro"
         >
 
-       <TextView
-           android:id="@+id/title_register"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/title_register"
-           android:textSize="50sp"
-           android:textColor="@color/white"
-           android:textStyle="bold"
-           android:layout_margin="30dp"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           />
+        <TextView
+            android:id="@+id/title_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_register"
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_margin="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <View
             android:id="@+id/container_components"
@@ -58,110 +58,79 @@
         <EditText
             android:id="@+id/protein"
             style="@style/Edit_Text"
-            android:hint="Age"
-            android:inputType="date"
+            android:hint="Protein"
+            android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/name_register"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/name_register" />
 
         <EditText
             android:id="@+id/calories"
             style="@style/Edit_Text"
-            android:hint="Weight"
+            android:hint="Calories"
             android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/protein"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/protein" />
 
         <EditText
             android:id="@+id/carb"
             style="@style/Edit_Text"
-            android:hint="Height"
-            android:inputType="date"
+            android:hint="Carb"
+            android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/calories"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/calories" />
 
         <EditText
             android:id="@+id/fiber"
             style="@style/Edit_Text"
-            android:hint="Activity"
-            android:inputType="text"
+            android:hint="Fiber"
+            android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/fat"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/fat" />
 
         <EditText
             android:id="@+id/fat"
             style="@style/Edit_Text"
-            android:hint="Body Fat %"
-            android:inputType="date"
+            android:hint="Fat"
+            android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/carb"
-            />
+            app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@id/carb" />
 
         <EditText
             android:id="@+id/quantity"
             style="@style/Edit_Text"
-            android:hint="Gender"
-            android:inputType="text"
+            android:hint="Quantity"
+            android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
             app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/fiber"
-            />
-
-        <EditText
-            android:id="@+id/email_define"
-            style="@style/Edit_Text"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:drawableRight="@drawable/icon_email"
-            android:textColor="#000000"
-            android:textColorHint="#AD000000"
             app:layout_constraintStart_toStartOf="@id/container_components"
-            app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/quantity"
-            />
-
-        <EditText
-            android:id="@+id/password_define"
-            style="@style/Edit_Text"
-            android:hint="Password"
-            android:inputType="numberPassword"
-            android:drawableRight="@drawable/icon_eye"
-            android:textColor="#000000"
-            android:textColorHint="#AD000000"
-            app:layout_constraintStart_toStartOf="@id/container_components"
-            app:layout_constraintEnd_toEndOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/email_define"
-            />
+            app:layout_constraintTop_toBottomOf="@id/fiber" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_button"
             style="@style/Login_Button"
-            android:onClick="registerUser"
-            android:text="@string/register"
+            android:layout_marginTop="16dp"
+            android:onClick="foodRegister"
 
+            android:text="@string/register"
             app:layout_constraintEnd_toEndOf="@id/container_components"
             app:layout_constraintStart_toStartOf="@id/container_components"
-            app:layout_constraintTop_toBottomOf="@id/password_define" />
+            app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

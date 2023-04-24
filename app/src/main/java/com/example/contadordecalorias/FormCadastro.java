@@ -33,12 +33,12 @@ public class        FormCadastro extends AppCompatActivity {
         edit_name = findViewById(R.id.name_register);
         edit_email = findViewById(R.id.email_define);
         edit_password = findViewById(R.id.password_define);
-        edit_age = findViewById(R.id.age);
-        edit_weight = findViewById(R.id.weight);
-        edit_height = findViewById(R.id.height);
-        edit_fat = findViewById(R.id.body_fat);
-        edit_gender = findViewById(R.id.gender);
-        edit_activity = findViewById(R.id.activity);
+        edit_age = findViewById(R.id.protein);
+        edit_weight = findViewById(R.id.calories);
+        edit_height = findViewById(R.id.carb);
+        edit_fat = findViewById(R.id.fat);
+        edit_gender = findViewById(R.id.quantity);
+        edit_activity = findViewById(R.id.fiber);
         btn_register = findViewById(R.id.register_button);
     }
 

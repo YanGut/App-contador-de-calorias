@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ContadorDeCalorias"
         tools:targetApi="31">
         <activity
+            android:name=".FoodCreate"
+            android:exported="false" />
+        <activity
             android:name=".Food_Select"
             android:exported="false" />
         <activity

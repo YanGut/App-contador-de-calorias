@@ -16,9 +16,10 @@ public class Food {
     public int fat;
     public int fiber;
     public int quantity;
+    public boolean unity;
 
 
-    public Food(String name, int protein, int calories, int carb, int fat, int fiber, int quantity) {
+    public Food(String name, int protein, int calories, int carb, int fat, int fiber, int quantity, boolean unity) {
         this.name = name;
         this.protein = protein;
         this.calories = calories;
@@ -26,6 +27,7 @@ public class Food {
         this.fat = fat;
         this.fiber = fiber;
         this.quantity = quantity;
+        this.unity = unity;
     }
 
     public Food(){}
@@ -39,6 +41,7 @@ public class Food {
         result.put("fat", fat);
         result.put("fiber", fiber);
         result.put("quantity", quantity);
+        result.put("unity", unity);
         return result;
     }
 }
