@@ -26,12 +26,9 @@ public class FormLogin extends AppCompatActivity {
 
         IniciarComponentes();
 
-        tex_tela_cadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormLogin.this, Register01.class);
-                startActivity(intent);
-            }
+        tex_tela_cadastro.setOnClickListener(v -> {
+            Intent intent = new Intent(FormLogin.this, Register01.class);
+            startActivity(intent);
         });
     }
 
@@ -59,10 +56,10 @@ public class FormLogin extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser user = auth.getCurrentUser();
 
-                    Intent intent = new Intent(FormLogin.this, MainActivity.class);
-//                    Intent intent = new Intent(FormLogin.this, Food_Select.class);
+                    //Intent intent = new Intent(FormLogin.this, MainActivity.class);
+                    Intent intent = new Intent(FormLogin.this, Food_Create.class);
+                    //Intent intent = new Intent(FormLogin.this, Food_Select.class);
 
-//                  Intent intent = new Intent(FormLogin.this, Food_Select.class);
 
                     startActivity(intent);
                 }else{
