@@ -56,8 +56,8 @@ public class FormLogin extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser user = auth.getCurrentUser();
 
-                    //Intent intent = new Intent(FormLogin.this, MainActivity.class);
-                    Intent intent = new Intent(FormLogin.this, Food_Create.class);
+                    Intent intent = new Intent(FormLogin.this, MainActivity.class);
+                    //Intent intent = new Intent(FormLogin.this, Food_Create.class);
                     //Intent intent = new Intent(FormLogin.this, Food_Select.class);
 
 
