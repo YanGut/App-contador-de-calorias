@@ -2,12 +2,15 @@ package com.example.contadordecalorias;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import entities.Food;
@@ -15,7 +18,8 @@ import entities.Food;
 public class Food_Create extends AppCompatActivity {
 
     private EditText name, protein, carb, calories, fiber, fat, quantity;
-    String[] messages = {"Preencha todos os campos, doidim!", "Comida criada oia", "User not found"};
+    private CheckBox unit;
+    String[] messages = {"Preencha todos os campos, doidim!", "Comida criada oia", "Deu alguma coisa errada."};
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -34,26 +38,56 @@ public class Food_Create extends AppCompatActivity {
         fiber = findViewById(R.id.fiber);
         quantity = findViewById(R.id.quantity);
         fat = findViewById(R.id.fat);
+        unit = findViewById(R.id.checkUni);
+    }
+
+    public boolean checarNulo(){
+        String foodName = name.getText().toString();
+        String foodProtein = protein.getText().toString();
+        String foodCarb = carb.getText().toString();
+        String foodCalories = calories.getText().toString();
+        String foodFiber = fiber.getText().toString();
+        String foodQuantity = quantity.getText().toString();
+        String foodFat = fat.getText().toString();
+
+        return foodName.isEmpty() || foodProtein.isEmpty() || foodFat.isEmpty() || foodCarb.isEmpty() || foodCalories.isEmpty() || foodFiber.isEmpty() || foodQuantity.isEmpty();
     }
 
     public void foodRegister(View v){
-        String foodName = name.getText().toString();
-        Integer foodProtein = Integer.parseInt(protein.getText().toString());
-        Integer foodCarb = Integer.parseInt(carb.getText().toString());
-        Integer foodCalories = Integer.parseInt(calories.getText().toString());
-        Integer foodFiber = Integer.parseInt(fiber.getText().toString());
-        Integer foodQuantity = Integer.parseInt(quantity.getText().toString());
-        Integer foodFat = Integer.parseInt(fat.getText().toString());
 
-        if(foodName.isEmpty() || foodProtein.equals(null) || foodFat.equals(null) || foodCarb.equals(null) || foodCalories.equals(null) || foodFiber.equals(null) || foodQuantity.equals(null)){
+        if(checarNulo()){
             Snackbar snackbar = Snackbar.make(v, messages[0], Snackbar.LENGTH_SHORT);
             snackbar.setBackgroundTint(Color.WHITE);
             snackbar.setTextColor(Color.BLACK);
             snackbar.show();
-        }else{
-            Food food = new Food(foodName,foodProtein,foodCalories,foodCarb,foodFat,foodFiber,foodQuantity,true);
+        }else {
+            String foodName = name.getText().toString();
+            double foodProtein = Double.parseDouble(protein.getText().toString());
+            double foodCarb = Double.parseDouble(carb.getText().toString());
+            int foodCalories = Integer.parseInt(calories.getText().toString());
+            double foodFiber = Double.parseDouble(fiber.getText().toString());
+            int foodQuantity = Integer.parseInt(quantity.getText().toString());
+            double foodFat = Double.parseDouble(fat.getText().toString());
+            boolean foodUni = unit.isChecked();
 
-            db.collection("Food").document().set(food.toMap());
+            Food food = new Food(foodName, foodProtein, foodCalories, foodCarb, foodFat, foodFiber, foodQuantity, foodUni);
+
+            db.collection("foods").document().set(food.toMap()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+
+                }else{
+                    // Usuário não localizado
+                    Snackbar snackbar = Snackbar.make(v, messages[2], Snackbar.LENGTH_SHORT);
+                    snackbar.setBackgroundTint(Color.WHITE);
+                    snackbar.setTextColor(Color.BLACK);
+                    snackbar.show();
+                }
+            });
         }
+
     }
 }

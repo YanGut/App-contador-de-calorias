@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context=".FormCadastro"
+        tools:context=".Food_Create"
         >
 
         <TextView
@@ -59,7 +59,7 @@
             android:id="@+id/protein"
             style="@style/Edit_Text"
             android:hint="Protein"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
@@ -81,7 +81,7 @@
             android:id="@+id/carb"
             style="@style/Edit_Text"
             android:hint="Carb"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
@@ -92,7 +92,7 @@
             android:id="@+id/fiber"
             style="@style/Edit_Text"
             android:hint="Fiber"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
@@ -103,7 +103,7 @@
             android:id="@+id/fat"
             style="@style/Edit_Text"
             android:hint="Fat"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textColor="#000000"
             android:textColorHint="#AD000000"
             app:layout_constraintEnd_toEndOf="@id/container_components"
@@ -124,12 +124,21 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_button"
             style="@style/Login_Button"
-            android:layout_marginTop="16dp"
             android:onClick="foodRegister"
 
             android:text="@string/register"
             app:layout_constraintEnd_toEndOf="@id/container_components"
             app:layout_constraintStart_toStartOf="@id/container_components"
+            app:layout_constraintTop_toBottomOf="@+id/checkUni" />
+
+        <CheckBox
+            android:id="@+id/checkUni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Unidade?"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/quantity"
             app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
