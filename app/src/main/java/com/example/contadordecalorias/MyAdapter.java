@@ -1,9 +1,13 @@
 package com.example.contadordecalorias;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<Food> foodArrayList;
+    private AdapterView.OnItemClickListener mListener;
 
     public MyAdapter(Context context, ArrayList<Food> foodArrayList) {
         this.context = context;
@@ -33,6 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return new MyViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
@@ -41,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.foodName.setText(food.name);
         holder.foodCal.setText(String.valueOf(food.calories) + " Kcal,");
         holder.foodProtein.setText(String.valueOf(food.protein) + " g,");
-        holder.foodQuantity.setText(String.valueOf(food.quantity) + " g");
+        holder.foodQuantity.setText(String.valueOf(food.quantity) + (food.unity ? " un" : " g"));
 
     }
 
@@ -64,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setFilteredList(ArrayList<Food> filteredList){
         this.foodArrayList = filteredList;
         notifyDataSetChanged();

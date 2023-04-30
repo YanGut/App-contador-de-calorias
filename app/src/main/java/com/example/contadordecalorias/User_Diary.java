@@ -8,20 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.contadordecalorias.adapterTools.RecyclerItemClickListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -29,61 +21,52 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import entities.Food;
 
-public class Food_Select extends AppCompatActivity {
+public class User_Diary extends AppCompatActivity {
 
-    SearchView edt_textSearch;
+    TextView title, calories;
     RecyclerView recyclerView;
+    String data;
     ArrayList<Food> foodArrayList;
     MyAdapter myAdapter;
+    String[] messages = {"Café da Manhã", "Almoço", "Jantar", "Lanche"};
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_select);
-
-        Bundle test = getIntent().getExtras();
-        data = test.getString("type");
+        setContentView(R.layout.activity_user_diary);
 
         foodArrayList = new ArrayList<Food>();
 
-        edt_textSearch = findViewById(R.id.edt_search);
-        edt_textSearch.clearFocus();
-        edt_textSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+        Bundle test = getIntent().getExtras();
+        data = test.getString("title");
+        int value = Integer.parseInt(data);
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                filterList(s);
-                return true;
-            }
-        });
+        title = findViewById(R.id.diaryTitle);
+        title.setText(messages[value]);
 
-        recyclerView = findViewById(R.id.recycleView);
+        recyclerView = findViewById(R.id.recyclerViewDiary);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAdapter = new MyAdapter(Food_Select.this,foodArrayList);
+        myAdapter = new MyAdapter(getApplicationContext(),foodArrayList);
 
         recyclerView.setAdapter(myAdapter);
-
         EventChangeListener();
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(myAdapter.context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override public void onItemClick(View view, int position) {}
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         Food food = foodArrayList.get(position);
 
-                        db.collection("diary").document(user.getUid()).collection(data).document(food.getDocumentId()).set(food.toMap()).addOnCompleteListener(task -> {
+                        db.collection("diary").document(user.getUid()).collection(data).document(food.getDocumentId()).delete().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
 
                                 Intent intent = new Intent(getApplicationContext(), User_Diary.class);
@@ -93,9 +76,6 @@ public class Food_Select extends AppCompatActivity {
                             }
                         });
                     }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {}
                 })
         );
 
@@ -103,33 +83,42 @@ public class Food_Select extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     public void EventChangeListener(){
-        db.collection("foods").orderBy("name", Query.Direction.ASCENDING).get()
+        db.collection("diary").document(user.getUid()).collection(data).orderBy("name", Query.Direction.ASCENDING).get()
                 .addOnSuccessListener(documentSnapshot -> {
 
                     for(DocumentChange dc : documentSnapshot.getDocumentChanges()){
-                        if(dc.getType() == DocumentChange.Type.ADDED) {
+                        if(dc.getType() == DocumentChange.Type.ADDED){
                             foodArrayList.add(dc.getDocument().toObject(Food.class));
                         }
                     }
 
                     myAdapter.notifyDataSetChanged();
 
-        }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
+                    sumCalories();
+
+                }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
     }
 
-    private void filterList(String text){
-        ArrayList<Food> filteredList = new ArrayList<>();
-        for(Food food : foodArrayList){
-            if(food.name.toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(food);
-            }
+    public void backButton(View v){
+        finish();
+    }
 
-            if(filteredList.isEmpty()){
-//                Toast.makeText(this, "No data found.", Toast.LENGTH_SHORT).show();
-            }else{
-                myAdapter.setFilteredList(filteredList);
-            }
+    public void addFood(View v){
+        Intent intent = new Intent(getApplicationContext(), Food_Select.class);
+        intent.putExtra("type", data);
+        finish();
+        startActivity(intent);
+    }
+
+    public void sumCalories(){
+        calories = findViewById(R.id.txt_totalCalories);
+
+        int totalCalories = 0;
+
+        for(Food f: foodArrayList){
+            totalCalories += f.calories;
         }
-    }
 
+        calories.setText("Total de calorias: " + totalCalories);
+    }
 }

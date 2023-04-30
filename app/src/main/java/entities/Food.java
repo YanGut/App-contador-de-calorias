@@ -44,4 +44,8 @@ public class Food {
         result.put("unity", unity);
         return result;
     }
+
+    public String getDocumentId(){
+        return this.documentId;
+    }
 }

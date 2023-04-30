@@ -56,6 +56,7 @@ public class Food_Create extends AppCompatActivity {
     public void foodRegister(View v){
 
         if(checarNulo()){
+            // Campos vazios
             Snackbar snackbar = Snackbar.make(v, messages[0], Snackbar.LENGTH_SHORT);
             snackbar.setBackgroundTint(Color.WHITE);
             snackbar.setTextColor(Color.BLACK);
@@ -80,7 +81,7 @@ public class Food_Create extends AppCompatActivity {
                     startActivity(intent);
 
                 }else{
-                    // Usuário não localizado
+                    // Deu ruim
                     Snackbar snackbar = Snackbar.make(v, messages[2], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
