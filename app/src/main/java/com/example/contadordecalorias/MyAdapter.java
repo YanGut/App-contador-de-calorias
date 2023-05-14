@@ -47,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.foodName.setTag(food.getDocumentId());
         holder.foodName.setText(food.name);
         holder.foodCal.setText("Calorias: " + food.calories + " Kcal,");
-        holder.foodProtein.setText("Proteínas: " + food.protein + " g,");
+        holder.foodProtein.setText("Proteínas: " + String.format("%.2f",food.protein) + " g,");
         holder.foodQuantity.setText("Quantidade: " + food.quantity + (food.unity ? " un" : " g"));
 
     }

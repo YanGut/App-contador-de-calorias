@@ -36,7 +36,7 @@ import java.util.List;
 
 import entities.Food;
 
-public class Food_Select extends AppCompatActivity {
+public class Food_Select extends AppCompatActivity implements DialogQuantity.DialogListener {
 
     SearchView edt_textSearch;
     RecyclerView recyclerView;
@@ -45,7 +45,7 @@ public class Food_Select extends AppCompatActivity {
     MyAdapter myAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String data;
+    String data, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,32 +86,12 @@ public class Food_Select extends AppCompatActivity {
                 new RecyclerItemClickListener(myAdapter.context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         //Food food = foodArrayList.get(position);
-                        final Food[] food = new Food[1];
 
-                        String id = view.findViewById(R.id.txt_foodName).getTag().toString();
+                        id = view.findViewById(R.id.txt_foodName).getTag().toString();
 
-                        db.collection("foods").document(id).get().addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    food[0] = task.getResult().toObject(Food.class);
+                        openDialog();
 
-                                    db.collection("diary").document(user.getUid()).collection(data).document(food[0].getDocumentId()).set(food[0].toMap()).addOnCompleteListener(tasks -> {
-                                        if (tasks.isSuccessful()) {
 
-                                            Intent intent = new Intent(getApplicationContext(), User_Diary.class);
-                                            intent.putExtra("title", data);
-                                            finish();
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else {
-                                    Log.d(TAG, "No such document");
-                                }
-                            } else {
-                                Log.d(TAG, "get failed with ", task.getException());
-                            }
-                        });
 
                     }
 
@@ -154,4 +134,45 @@ public class Food_Select extends AppCompatActivity {
         }
     }
 
+    public void openDialog(){
+        DialogQuantity dialogQuantity = new DialogQuantity();
+
+        dialogQuantity.show(getSupportFragmentManager(), "Dialog Quantity");
+    }
+
+    @Override
+    public void applyQuantity(Float quantity) {
+
+        final Food[] food = new Food[1];
+
+        db.collection("foods").document(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    food[0] = task.getResult().toObject(Food.class);
+
+                    food[0].calories = (int) (food[0].calories*quantity/ food[0].quantity);
+                    food[0].protein = food[0].protein*quantity/ food[0].quantity;
+                    food[0].fat = food[0].fat*quantity/ food[0].quantity;
+                    food[0].fiber = food[0].fiber*quantity/ food[0].quantity;
+                    food[0].carb = food[0].carb*quantity/ food[0].quantity;
+                    food[0].quantity = quantity;
+
+                    db.collection("diary").document(user.getUid()).collection(data).document(food[0].getDocumentId()).set(food[0].toMap()).addOnCompleteListener(tasks -> {
+                        if (tasks.isSuccessful()) {
+
+                            Intent intent = new Intent(getApplicationContext(), User_Diary.class);
+                            intent.putExtra("title", data);
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+        });
+    }
 }

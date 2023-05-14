@@ -67,7 +67,7 @@ public class Food_Create extends AppCompatActivity {
             double foodCarb = Double.parseDouble(carb.getText().toString());
             int foodCalories = Integer.parseInt(calories.getText().toString());
             double foodFiber = Double.parseDouble(fiber.getText().toString());
-            int foodQuantity = Integer.parseInt(quantity.getText().toString());
+            double foodQuantity = Double.parseDouble(quantity.getText().toString());
             double foodFat = Double.parseDouble(fat.getText().toString());
             boolean foodUni = unit.isChecked();
 
