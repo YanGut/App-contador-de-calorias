@@ -12,6 +12,12 @@
         android:theme="@style/Theme.ContadorDeCalorias"
         tools:targetApi="31">
         <activity
+            android:name=".register.Register03"
+            android:exported="false" />
+        <activity
+            android:name=".register.Register02"
+            android:exported="false" />
+        <activity
             android:name=".User_Diary"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

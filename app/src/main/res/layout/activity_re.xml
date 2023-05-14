@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".register.Register01">
+    tools:context=".register.Register03">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -42,7 +42,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/custom_progressbar_background"
         android:max="100"
-        android:progress="40"
+        android:progress="100"
         android:progressDrawable="@drawable/custom_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginBottom="10dp"
-        android:enabled="false"
         android:height="20dp"
-        android:background="@drawable/button_off"
-        android:onClick="Register02"
-        android:text="Próximo"
+        android:enabled="false"
+        android:onClick="Finalizar"
+        android:text="Finalizar"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -72,7 +71,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
-        android:text="Qual sua frequência de  atividades físicas?"
+        android:text="Insira seus Dados"
         android:textColor="#197A6E"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -80,85 +79,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/edit_name"
+        style="@style/Edit_Text"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="top"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNext"
+        android:layout_height="50dp"
+        android:drawableRight="@drawable/icon_user"
+        android:elevation="10dp"
+        android:hint="Insira seu nome"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:shadowDx="0"
+        android:shadowDy="4"
+        android:shadowRadius="5"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <ToggleButton
-            android:id="@+id/toggleSedentario"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Sedentário"
-            android:textOn="Sedentário"
-            android:textSize="20dp" />
+    <EditText
+        android:id="@+id/edit_age"
+        style="@style/Edit_Text"
 
-        <ToggleButton
-            android:id="@+id/toggleLeve"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Levemente Ativo"
-            android:textOn="Levemente Ativo"
-            android:textSize="20dp" />
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        android:hint="Insira sua idade"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_name" />
 
-        <ToggleButton
-            android:id="@+id/toggleModerado"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Moderadamente Ativo"
-            android:textOn="Moderadamente Ativo"
-            android:textSize="20dp" />
+    <EditText
+        android:id="@+id/edit_email"
+        style="@style/Edit_Text"
 
-        <ToggleButton
-            android:id="@+id/toggleMuito"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Muito Ativo"
-            android:textOn="Muito Ativo"
-            android:textSize="20dp" />
-    </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawableRight="@drawable/icon_email"
+        android:elevation="10dp"
+        android:hint="Insira seu email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_age" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        style="@style/Edit_Text"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawableRight="@drawable/icon_eye"
+
+        android:elevation="10dp"
+        android:hint="Insira sua senha"
+        android:inputType="numberPassword"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
     <TextView
         android:id="@+id/textView2"
@@ -184,7 +172,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".register.Register01">
+    tools:context=".register.Register02">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -42,7 +42,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/custom_progressbar_background"
         android:max="100"
-        android:progress="40"
+        android:progress="75"
         android:progressDrawable="@drawable/custom_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,10 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginBottom="10dp"
-        android:enabled="false"
         android:height="20dp"
-        android:background="@drawable/button_off"
-        android:onClick="Register02"
+        android:enabled="false"
+        android:onClick="Register03"
         android:text="Próximo"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +71,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
-        android:text="Qual sua frequência de  atividades físicas?"
+        android:text="Qual seu genêro?"
         android:textColor="#197A6E"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -82,21 +81,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
         android:gravity="top"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9">
 
         <ToggleButton
-            android:id="@+id/toggleSedentario"
+            android:id="@+id/toggleMasculino"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
@@ -107,12 +104,12 @@
             android:text="ToggleButton"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textOff="Sedentário"
-            android:textOn="Sedentário"
+            android:textOff="Masculino"
+            android:textOn="Masculino"
             android:textSize="20dp" />
 
         <ToggleButton
-            android:id="@+id/toggleLeve"
+            android:id="@+id/toggleFeminino"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
@@ -123,41 +120,10 @@
             android:text="ToggleButton"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textOff="Levemente Ativo"
-            android:textOn="Levemente Ativo"
+            android:textOff="Feminino"
+            android:textOn="Feminino"
             android:textSize="20dp" />
 
-        <ToggleButton
-            android:id="@+id/toggleModerado"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Moderadamente Ativo"
-            android:textOn="Moderadamente Ativo"
-            android:textSize="20dp" />
-
-        <ToggleButton
-            android:id="@+id/toggleMuito"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/togglebutton"
-            android:gravity="top|center"
-            android:paddingTop="10dp"
-            android:text="ToggleButton"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textOff="Muito Ativo"
-            android:textOn="Muito Ativo"
-            android:textSize="20dp" />
     </LinearLayout>
 
     <TextView
@@ -184,7 +150,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
