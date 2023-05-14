@@ -2,6 +2,7 @@ package com.example.contadordecalorias;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +22,12 @@ import android.widget.Toast;
 
 import com.example.contadordecalorias.adapterTools.RecyclerItemClickListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -38,6 +41,7 @@ public class Food_Select extends AppCompatActivity {
     SearchView edt_textSearch;
     RecyclerView recyclerView;
     ArrayList<Food> foodArrayList;
+    ArrayList<Food> filteredList;
     MyAdapter myAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -81,17 +85,34 @@ public class Food_Select extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(myAdapter.context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Food food = foodArrayList.get(position);
+                        //Food food = foodArrayList.get(position);
+                        final Food[] food = new Food[1];
 
-                        db.collection("diary").document(user.getUid()).collection(data).document(food.getDocumentId()).set(food.toMap()).addOnCompleteListener(task -> {
+                        String id = view.findViewById(R.id.txt_foodName).getTag().toString();
+
+                        db.collection("foods").document(id).get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    food[0] = task.getResult().toObject(Food.class);
 
-                                Intent intent = new Intent(getApplicationContext(), User_Diary.class);
-                                intent.putExtra("title", data);
-                                finish();
-                                startActivity(intent);
+                                    db.collection("diary").document(user.getUid()).collection(data).document(food[0].getDocumentId()).set(food[0].toMap()).addOnCompleteListener(tasks -> {
+                                        if (tasks.isSuccessful()) {
+
+                                            Intent intent = new Intent(getApplicationContext(), User_Diary.class);
+                                            intent.putExtra("title", data);
+                                            finish();
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                }
+                            } else {
+                                Log.d(TAG, "get failed with ", task.getException());
                             }
                         });
+
                     }
 
                     @Override
@@ -118,9 +139,10 @@ public class Food_Select extends AppCompatActivity {
     }
 
     private void filterList(String text){
-        ArrayList<Food> filteredList = new ArrayList<>();
+        filteredList = new ArrayList<>();
         for(Food food : foodArrayList){
             if(food.name.toLowerCase().contains(text.toLowerCase())){
+
                 filteredList.add(food);
             }
 

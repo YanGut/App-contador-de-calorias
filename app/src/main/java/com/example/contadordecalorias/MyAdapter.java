@@ -44,10 +44,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Food food = foodArrayList.get(position);
 
+        holder.foodName.setTag(food.getDocumentId());
         holder.foodName.setText(food.name);
-        holder.foodCal.setText(String.valueOf(food.calories) + " Kcal,");
-        holder.foodProtein.setText(String.valueOf(food.protein) + " g,");
-        holder.foodQuantity.setText(String.valueOf(food.quantity) + (food.unity ? " un" : " g"));
+        holder.foodCal.setText("Calorias: " + food.calories + " Kcal,");
+        holder.foodProtein.setText("Proteínas: " + food.protein + " g,");
+        holder.foodQuantity.setText("Quantidade: " + food.quantity + (food.unity ? " un" : " g"));
 
     }
 
