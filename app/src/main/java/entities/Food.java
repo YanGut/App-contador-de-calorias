@@ -15,11 +15,11 @@ public class Food {
     public double carb;
     public double fat;
     public double fiber;
-    public int quantity;
+    public double quantity;
     public boolean unity;
 
 
-    public Food(String name, double protein, int calories, double carb, double fat, double fiber, int quantity, boolean unity) {
+    public Food(String name, double protein, int calories, double carb, double fat, double fiber, double quantity, boolean unity) {
         this.name = name;
         this.protein = protein;
         this.calories = calories;

@@ -2,6 +2,7 @@ package com.example.contadordecalorias;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +22,12 @@ import android.widget.Toast;
 
 import com.example.contadordecalorias.adapterTools.RecyclerItemClickListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -33,15 +36,16 @@ import java.util.List;
 
 import entities.Food;
 
-public class Food_Select extends AppCompatActivity {
+public class Food_Select extends AppCompatActivity implements DialogQuantity.DialogListener {
 
     SearchView edt_textSearch;
     RecyclerView recyclerView;
     ArrayList<Food> foodArrayList;
+    ArrayList<Food> filteredList;
     MyAdapter myAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String data;
+    String data, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,17 +85,14 @@ public class Food_Select extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(myAdapter.context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Food food = foodArrayList.get(position);
+                        //Food food = foodArrayList.get(position);
 
-                        db.collection("diary").document(user.getUid()).collection(data).document(food.getDocumentId()).set(food.toMap()).addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
+                        id = view.findViewById(R.id.txt_foodName).getTag().toString();
 
-                                Intent intent = new Intent(getApplicationContext(), User_Diary.class);
-                                intent.putExtra("title", data);
-                                finish();
-                                startActivity(intent);
-                            }
-                        });
+                        openDialog();
+
+
+
                     }
 
                     @Override
@@ -118,9 +119,10 @@ public class Food_Select extends AppCompatActivity {
     }
 
     private void filterList(String text){
-        ArrayList<Food> filteredList = new ArrayList<>();
+        filteredList = new ArrayList<>();
         for(Food food : foodArrayList){
             if(food.name.toLowerCase().contains(text.toLowerCase())){
+
                 filteredList.add(food);
             }
 
@@ -132,4 +134,45 @@ public class Food_Select extends AppCompatActivity {
         }
     }
 
+    public void openDialog(){
+        DialogQuantity dialogQuantity = new DialogQuantity();
+
+        dialogQuantity.show(getSupportFragmentManager(), "Dialog Quantity");
+    }
+
+    @Override
+    public void applyQuantity(Float quantity) {
+
+        final Food[] food = new Food[1];
+
+        db.collection("foods").document(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    food[0] = task.getResult().toObject(Food.class);
+
+                    food[0].calories = (int) (food[0].calories*quantity/ food[0].quantity);
+                    food[0].protein = food[0].protein*quantity/ food[0].quantity;
+                    food[0].fat = food[0].fat*quantity/ food[0].quantity;
+                    food[0].fiber = food[0].fiber*quantity/ food[0].quantity;
+                    food[0].carb = food[0].carb*quantity/ food[0].quantity;
+                    food[0].quantity = quantity;
+
+                    db.collection("diary").document(user.getUid()).collection(data).document(food[0].getDocumentId()).set(food[0].toMap()).addOnCompleteListener(tasks -> {
+                        if (tasks.isSuccessful()) {
+
+                            Intent intent = new Intent(getApplicationContext(), User_Diary.class);
+                            intent.putExtra("title", data);
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+        });
+    }
 }
