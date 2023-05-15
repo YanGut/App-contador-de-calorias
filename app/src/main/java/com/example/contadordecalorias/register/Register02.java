@@ -30,6 +30,7 @@ public class Register02 extends AppCompatActivity {
     private TextView tex_tela_login;
     private Button button;
     private int mSelectedValue = -1;
+    private int freq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class Register02 extends AppCompatActivity {
         setContentView(R.layout.activity_register02);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -60,7 +61,8 @@ public class Register02 extends AppCompatActivity {
         mToggleButton2.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
 
-
+        Bundle test = getIntent().getExtras();
+        freq = test.getInt("frequencia");
 
     }
 
@@ -102,6 +104,9 @@ public class Register02 extends AppCompatActivity {
 
     public void Register03  (View v){
         Intent intent = new Intent(Register02.this, Register03.class);
+        intent.putExtra("gender", mSelectedValue);
+        intent.putExtra("frequencia", freq);
+        finish();
         startActivity(intent);
 
     }

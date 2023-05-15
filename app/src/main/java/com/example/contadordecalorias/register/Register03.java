@@ -26,6 +26,7 @@ import com.example.contadordecalorias.FormCadastro;
 import com.example.contadordecalorias.FormLogin;
 import com.example.contadordecalorias.MainActivity;
 import com.example.contadordecalorias.R;
+import com.example.contadordecalorias.User_Diary;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,9 +40,9 @@ public class Register03 extends AppCompatActivity {
     private ToggleButton mLastSelectedButton;
     private TextView tex_tela_login;
     private Button button;
-    private int mSelectedValue = -1;
+    public int genderUser, freq;
 
-    private EditText edit_name, edit_email, edit_password, edit_gender, edit_activity, edit_age, edit_height, edit_weight, edit_fat;
+    private EditText edit_name, edit_email, edit_password, edit_age, edit_height, edit_weight, edit_fat;
     private Button btn_register;
     String[] messages = {"Fill in all fields", "Registration completed successfully", "Error to register user"};
 
@@ -53,7 +54,7 @@ public class Register03 extends AppCompatActivity {
         setContentView(R.layout.activity_re);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -65,13 +66,19 @@ public class Register03 extends AppCompatActivity {
         edit_name = findViewById(R.id.edit_name);
         edit_email = findViewById(R.id.edit_email);
         edit_password = findViewById(R.id.edit_password);
+        edit_age = findViewById(R.id.edit_age);
+        edit_weight = findViewById(R.id.edit_weightUser);
+        edit_height = findViewById(R.id.edit_heightUser);
+        edit_fat = findViewById(R.id.edit_ageUser);
 
         button = findViewById(R.id.buttonNext);
         edit_name.addTextChangedListener(textWatcher);
         edit_email.addTextChangedListener(textWatcher);
         edit_password.addTextChangedListener(textWatcher);
 
-
+        Bundle test = getIntent().getExtras();
+        freq = test.getInt("frequencia");
+        genderUser = test.getInt("gender");
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
@@ -93,15 +100,13 @@ public class Register03 extends AppCompatActivity {
         }
     };
     public void startComponents() {
-        edit_name = findViewById(R.id.name_register);
-        edit_email = findViewById(R.id.email_define);
-        edit_password = findViewById(R.id.password_define);
-        edit_age = findViewById(R.id.protein);
-        edit_weight = findViewById(R.id.calories);
-        edit_height = findViewById(R.id.carb);
-        edit_fat = findViewById(R.id.fat);
-        edit_gender = findViewById(R.id.quantity);
-        edit_activity = findViewById(R.id.fiber);
+        edit_name = findViewById(R.id.edit_name);
+        edit_email = findViewById(R.id.edit_email);
+        edit_password = findViewById(R.id.edit_password);
+        edit_age = findViewById(R.id.edit_age);
+        edit_weight = findViewById(R.id.edit_weightUser);
+        edit_height = findViewById(R.id.edit_heightUser);
+        edit_fat = findViewById(R.id.edit_ageUser);
         btn_register = findViewById(R.id.register_button);
     }
     public void registerUser(View v) {
@@ -109,8 +114,8 @@ public class Register03 extends AppCompatActivity {
         String name = edit_name.getText().toString();
         String email = edit_email.getText().toString();
         String password = edit_password.getText().toString();
-        String gender = edit_gender.getText().toString();
-        int activity = Integer.parseInt(edit_activity.getText().toString());
+        String gender = genderUser == 1 ? "male" : "female";
+        int activity = freq;
 
         int age = Integer.parseInt(edit_age.getText().toString());
 
@@ -145,7 +150,9 @@ public class Register03 extends AppCompatActivity {
                                 snackbar.setTextColor(Color.BLACK);
                                 snackbar.show();
 
-                                Register03.this.finish();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                finish();
+                                startActivity(intent);
                             })
                             .addOnFailureListener(e -> {
                                 Snackbar snackbar = Snackbar.make(v, messages[2], Snackbar.LENGTH_SHORT);

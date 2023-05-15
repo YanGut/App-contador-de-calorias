@@ -124,6 +124,8 @@ public class Register01 extends AppCompatActivity {
 
     public void Register02(View v){
         Intent intent = new Intent(Register01.this, Register02.class);
+        intent.putExtra("frequencia", mSelectedValue);
+        finish();
         startActivity(intent);
 
     }

@@ -9,12 +9,12 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:gravity="center"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/white"
         android:elevation="4dp"
+        android:gravity="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         tools:ignore="MissingConstraints" />
 
@@ -55,14 +55,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginBottom="10dp"
         android:height="20dp"
         android:enabled="false"
-        android:onClick="Finalizar"
+        android:onClick="registerUser"
         android:text="Finalizar"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_password"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/textView9"
@@ -105,7 +106,7 @@
         android:layout_height="50dp"
         android:elevation="10dp"
         android:hint="Insira sua idade"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#AD888888"
@@ -128,7 +129,7 @@
         android:textColorHint="#AD888888"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_age" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_weightUser" />
 
     <EditText
         android:id="@+id/edit_password"
@@ -148,30 +149,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Already have an account?"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tex_tela_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/edit_ageUser"
+        style="@style/Edit_Text"
 
-    <TextView
-        android:id="@+id/tex_tela_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:onClick="loginScreen"
-        android:text="Log in"
-        android:textColor="@color/teal_200"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="12dp"
+        android:elevation="10dp"
+        android:hint="Insira sua gordura (%)"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_age" />
+
+    <EditText
+        android:id="@+id/edit_heightUser"
+        style="@style/Edit_Text"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:elevation="10dp"
+        android:hint="Insira sua altura (cm)"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ageUser" />
+
+    <EditText
+        android:id="@+id/edit_weightUser"
+        style="@style/Edit_Text"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:elevation="10dp"
+        android:hint="Insira seu peso (kg)"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#AD888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_heightUser" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
