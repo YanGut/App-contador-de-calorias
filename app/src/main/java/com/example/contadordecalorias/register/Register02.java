@@ -42,11 +42,11 @@ public class Register02 extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         //Para poder pegar um valor diferente de cada botão e não deixar a pessoa escolher multiplas opções
         mToggleButton1 = findViewById(R.id.toggleMasculino);
@@ -122,6 +122,10 @@ public class Register02 extends AppCompatActivity {
         }
     }
 
+    public void Voltar(View v){
+        finish();
+
+    }
 
 
 }

@@ -56,11 +56,11 @@ public class Register03 extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         //Para poder pegar um valor diferente de cada botão e não deixar a pessoa escolher multiplas opções
         edit_name = findViewById(R.id.edit_name);
@@ -79,6 +79,10 @@ public class Register03 extends AppCompatActivity {
         Bundle test = getIntent().getExtras();
         freq = test.getInt("frequencia");
         genderUser = test.getInt("gender");
+    }
+    public void Voltar(View v){
+        finish();
+
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
