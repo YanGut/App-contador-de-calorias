@@ -1,32 +1,24 @@
 package com.example.contadordecalorias.register;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.MenuItem;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.contadordecalorias.FormCadastro;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.contadordecalorias.FormLogin;
 import com.example.contadordecalorias.MainActivity;
 import com.example.contadordecalorias.R;
-import com.example.contadordecalorias.User_Diary;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -130,6 +122,10 @@ public class Register03 extends AppCompatActivity {
         double basalMetabolicRate = User.calculateBasalMetabolicRate(weight, height, age, gender);
         int totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
 
+        int proteinConsumption = (int) (weight * 2);
+        int fatConsumption = (int) (weight * 0.8);
+        int carbConsumption = (int) (((proteinConsumption * 4) + (fatConsumption * 9) - totalMetabolicRate) / 4);
+
         //Condicional para exibir uma menssagem caso o usuário tente se cadastrar sem preencher todos os campos
         if(name.isEmpty() || email.isEmpty() || password.isEmpty()) {
 
@@ -143,7 +139,8 @@ public class Register03 extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Cria um documento com as informações adicionais do usuário
 
-                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email, basalMetabolicRate, totalMetabolicRate);
+                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email, basalMetabolicRate, totalMetabolicRate,
+                            proteinConsumption, fatConsumption, carbConsumption);
 
                     String uid = task.getResult().getUser().getUid();
                     FirebaseFirestore.getInstance().collection("users").document(uid)

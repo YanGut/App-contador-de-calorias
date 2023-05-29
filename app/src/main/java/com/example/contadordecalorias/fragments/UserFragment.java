@@ -72,8 +72,7 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
@@ -90,7 +89,6 @@ public class UserFragment extends Fragment {
         txt_height = view.findViewById(R.id.text_user_height);
 
         txt_weight = view.findViewById(R.id.text_user_weight);
-
 
         return view;
     }

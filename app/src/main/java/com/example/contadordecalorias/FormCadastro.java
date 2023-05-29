@@ -1,12 +1,12 @@
 package com.example.contadordecalorias;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,15 +49,17 @@ public class        FormCadastro extends AppCompatActivity {
         String password = edit_password.getText().toString();
         String gender = edit_gender.getText().toString();
         int activity = Integer.parseInt(edit_activity.getText().toString());
-
         int age = Integer.parseInt(edit_age.getText().toString());
-
         int height = Integer.parseInt(edit_height.getText().toString());
         float weight = Float.parseFloat(edit_weight.getText().toString());
         float fat = Float.parseFloat(edit_fat.getText().toString());
 
         double basalMetabolicRate = User.calculateBasalMetabolicRate(weight, height, age, gender);
         int totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
+
+        int proteinConsumption = (int) (weight * 2);
+        int fatConsumption = (int) (weight * 0.8);
+        int carbConsumption = (int) (((proteinConsumption * 4) + (fatConsumption * 9) - totalMetabolicRate) / 4);
 
         //Condicional para exibir uma menssagem caso o usuário tente se cadastrar sem preencher todos os campos
         if(name.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -72,7 +74,8 @@ public class        FormCadastro extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Cria um documento com as informações adicionais do usuário
 
-                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email, basalMetabolicRate, totalMetabolicRate);
+                    User user = new User(name, age,  height,  weight,  fat,  activity, gender, email, basalMetabolicRate, totalMetabolicRate,
+                            proteinConsumption, fatConsumption, carbConsumption);
 
                     String uid = task.getResult().getUser().getUid();
                     FirebaseFirestore.getInstance().collection("users").document(uid)
