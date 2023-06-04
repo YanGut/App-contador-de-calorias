@@ -1,10 +1,7 @@
 package com.example.contadordecalorias;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,9 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.contadordecalorias.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -31,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavHostFragment navHostFragment;
     private NavController navController;
-    TextView caloriasActivity;
+    public static TextView caloriasActivity;
     private Button btn_cafe_da_manha, btn_almoco, btn_jantar, btn_lanche;
     ArrayList<Food> foodArrayList;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -45,15 +40,11 @@ public class MainActivity extends AppCompatActivity {
         initNavigation();
         iniciarComponentes();
 
-
-        //Database-------------------------------------
-        DBAdapter db = new DBAdapter(this);
-        db.open();
-        db.close();
-
         Toast.makeText(this, "Database funciona, e a comida foi criada!!!", Toast.LENGTH_SHORT).show();
 
         //sumAllCalories();
+
+        //definirCaloriasTotais();
     }
 
     private void initNavigation(){
@@ -83,30 +74,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), User_Diary.class);
         intent.putExtra("title", index);
         startActivity(intent);
-    }
-
-    public void sumAllCalories(){
-        int totalCalories = 0;
-        String id = user.getUid();
-        for(int i = 0; i < 4; i++){
-            String data = Integer.toString(i);
-            db.collection("diary").document(user.getUid()).collection(data).get()
-                    .addOnSuccessListener(documentSnapshot -> {
-
-                        for(DocumentChange dc : documentSnapshot.getDocumentChanges()){
-                            if(dc.getType() == DocumentChange.Type.ADDED){
-                                foodArrayList.add(dc.getDocument().toObject(Food.class));
-                            }
-                        }
-                    }).addOnFailureListener(e -> Log.d(TAG, "Error getting document: " + e.getMessage()));
-        }
-
-        for(Food f: foodArrayList){
-            totalCalories += f.calories;
-        }
-
-        caloriasActivity.setText("Total de calorias: ");
-
     }
 
 }

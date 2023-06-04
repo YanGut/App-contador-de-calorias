@@ -33,9 +33,9 @@ public class User {
         this.weight = weight;
         this.fat = fat;
         this.activity = activity;
-        this.proteinConsumption = proteinConsumption;
-        this.carbConsumption = carbConsumption;
-        this.fatConsumption = fatConsumption;
+        this.proteinConsumption = calculateProteinConsumption((int)weight);
+        this.carbConsumption = calculateCarbConsumption(proteinConsumption, fatConsumption, totalMetabolicRate);
+        this.fatConsumption = calculateFatConsumption((int)weight);
         this.gender = gender;
         this.basalMetabolicRate = calculateBasalMetabolicRate(weight, height, age, gender);
         this.totalMetabolicRate = calculateTotalMetabolicRate(basalMetabolicRate, activity);
@@ -64,25 +64,26 @@ public class User {
         return result;
     }
 
-    public static Double calculateBasalMetabolicRate(double mass, int height, int age, String gender) {
+        public static Double calculateBasalMetabolicRate(double mass, int height, int age, String gender)
+        {
+            double basalMetabolicRate = 0;
 
-        double basalMetabolicRate = 0;
+            double calculation = (13.75 * mass) + (5 * height) - (6.76 * age);
 
-        double calculation = (13.75 * mass) + (5 * height) - (6.76 * age);
- 
-        if (gender.equals("male")) {
-            basalMetabolicRate = calculation + 66.5;
-        } else if (gender.equals("female")) {
-            basalMetabolicRate = calculation + 665;
+            if (gender.equals("male")) {
+                basalMetabolicRate = calculation + 66.5;
+            } else if (gender.equals("female")) {
+                basalMetabolicRate = calculation + 665;
+            }
+            return basalMetabolicRate;
         }
-        return basalMetabolicRate;
-    }
 
-    public static int calculateTotalMetabolicRate(Double basalMetabolicRate, int activity) {
-
+    public static int calculateTotalMetabolicRate(Double basalMetabolicRate, int activity)
+    {
         Double totalMetabolicRate = 0.0;
 
-        switch (activity) {
+        switch (activity)
+        {
             case 1:
                 totalMetabolicRate = basalMetabolicRate * 1.2;
                 break;
@@ -99,7 +100,26 @@ public class User {
                 totalMetabolicRate = basalMetabolicRate * 1.9;
                 break;
         }
+
         return totalMetabolicRate.intValue();
     }
 
+    public static int calculateProteinConsumption(int weight)
+    {
+        return weight * 2;
+    }
+
+    public static int calculateCarbConsumption(int proteinConsumption, int fatConsumption, int totalMetabolicRate)
+    {
+        int proteinConsumedInCal = proteinConsumption * 4;
+        int fatConsumedInCal = fatConsumption * 9;
+        int totalCaloriesToConsume = (totalMetabolicRate - (int)(totalMetabolicRate * 0.2));
+
+        return (totalCaloriesToConsume - proteinConsumedInCal - fatConsumedInCal) / 4;
+    }
+
+    public static int calculateFatConsumption(int weight)
+    {
+        return (int)(weight * 0.8);
+    }
 }

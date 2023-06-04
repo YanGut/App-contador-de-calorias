@@ -76,18 +76,14 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+
         txt_name = view.findViewById(R.id.text_user_name);
-        String currentValueName = txt_name.getText().toString();
-
+        //String currentValueName = txt_name.getText().toString();
         txt_email = view.findViewById(R.id.text_user_email);
-        String currentValueEmail = txt_email.getText().toString();
-
+        //String currentValueEmail = txt_email.getText().toString();
         txt_gender = view.findViewById(R.id.text_user_gender);
-
         txt_age = view.findViewById(R.id.text_user_age);
-
         txt_height = view.findViewById(R.id.text_user_height);
-
         txt_weight = view.findViewById(R.id.text_user_weight);
 
         return view;
@@ -97,9 +93,11 @@ public class UserFragment extends Fragment {
         String userId = user.getUid();
 
         DocumentReference docRef = db.collection("users").document(userId);
+
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()) {
                 User userLog = documentSnapshot.toObject(User.class);
+
                 txt_name.setText(userLog.name);
                 txt_email.setText(user.getEmail());
                 txt_gender.setText(String.valueOf(userLog.gender));

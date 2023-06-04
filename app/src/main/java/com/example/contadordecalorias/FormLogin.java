@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class FormLogin extends AppCompatActivity {
 
     private TextView tex_tela_cadastro, edt_email, edt_password;
-    private FirebaseAuth auth;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
     String[] messages = {"Fill in all fields", "Login sucess", "User not found"};
 
     @Override
@@ -36,8 +36,6 @@ public class FormLogin extends AppCompatActivity {
         tex_tela_cadastro = findViewById(R.id.text_screen_register);
         edt_email = findViewById(R.id.edit_email);
         edt_password = findViewById(R.id.edit_password);
-
-        auth = FirebaseAuth.getInstance();
     }
 
     public void loginUser(View v){

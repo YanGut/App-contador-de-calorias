@@ -10,8 +10,8 @@ public class Food {
     @DocumentId
     private String documentId;
     public String name;
-    public double protein;
     public int calories;
+    public double protein;
     public double carb;
     public double fat;
     public double fiber;
