@@ -57,9 +57,9 @@ public class        FormCadastro extends AppCompatActivity {
         double basalMetabolicRate = User.calculateBasalMetabolicRate(weight, height, age, gender);
         int totalMetabolicRate = User.calculateTotalMetabolicRate(basalMetabolicRate, activity);
 
-        int proteinConsumption = (int) (weight * 2);
-        int fatConsumption = (int) (weight * 0.8);
-        int carbConsumption = (int) (((proteinConsumption * 4) + (fatConsumption * 9) - totalMetabolicRate) / 4);
+        int proteinConsumption = User.calculateProteinConsumption((int)weight);
+        int fatConsumption = User.calculateFatConsumption((int)weight);
+        int carbConsumption = User.calculateCarbConsumption(proteinConsumption, fatConsumption, totalMetabolicRate);
 
         //Condicional para exibir uma menssagem caso o usuário tente se cadastrar sem preencher todos os campos
         if(name.isEmpty() || email.isEmpty() || password.isEmpty()) {
