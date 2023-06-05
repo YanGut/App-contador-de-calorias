@@ -27,20 +27,7 @@
             app:layout_constraintTop_toBottomOf="@+id/container_components_Carb" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:elevation="11dp"
-            android:text="20%"
-            android:textColor="#202020"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/container_components_Carb2"
-            app:layout_constraintTop_toTopOf="@+id/container_components_Carb2" />
-
-        <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/textView_Fat_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -52,23 +39,48 @@
             app:layout_constraintStart_toStartOf="@+id/container_components_Carb2"
             app:layout_constraintTop_toTopOf="@+id/container_components_Carb2" />
 
+        <TextView
+            android:id="@+id/textView_Fat_Consumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:elevation="11dp"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Fat_Title"
+            app:layout_constraintTop_toTopOf="@+id/container_components_Carb2" />
+
+        <TextView
+            android:id="@+id/textView_Fat_Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="225dp"
+            android:layout_marginTop="16dp"
+            android:elevation="11dp"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Fat_Consumed"
+            app:layout_constraintTop_toTopOf="@+id/container_components_Carb2" />
+
         <ProgressBar
-            android:id="@+id/progressbar4"
+            android:id="@+id/progressbar_Fat"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_progressbar_background"
-
             android:elevation="11dp"
-            android:max="100"
+            android:indeterminateOnly="false"
             android:progress="20"
+            android:scrollbarSize="50dp"
             android:progressDrawable="@drawable/custom_progressbar_gordura"
             app:layout_constraintBottom_toBottomOf="@+id/container_components_Carb2"
             app:layout_constraintEnd_toEndOf="@+id/container_components_Carb2"
             app:layout_constraintStart_toStartOf="@+id/container_components_Carb2"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Fat_Title" />
 
         <View
             android:id="@+id/container_components_Carb"
@@ -86,38 +98,24 @@
             app:layout_constraintTop_toBottomOf="@+id/container_components_Carb3" />
 
         <ProgressBar
-            android:id="@+id/progressbar3"
+            android:id="@+id/progressbar_Carb"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_progressbar_background"
             android:elevation="11dp"
-            android:max="100"
-
+            android:indeterminateOnly="false"
             android:progress="40"
+            android:scrollbarSize="50dp"
             android:progressDrawable="@drawable/custom_progressbar_carb"
             app:layout_constraintBottom_toBottomOf="@+id/container_components_Carb"
             app:layout_constraintEnd_toEndOf="@+id/container_components_Carb"
             app:layout_constraintStart_toStartOf="@+id/container_components_Carb"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Carb_Title"/>
 
         <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:elevation="11dp"
-            android:text="40%"
-            android:textColor="#202020"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/container_components_Carb"
-            app:layout_constraintTop_toTopOf="@+id/container_components_Carb" />
-
-        <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView_Carb_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -129,23 +127,48 @@
             app:layout_constraintStart_toStartOf="@+id/container_components_Carb"
             app:layout_constraintTop_toTopOf="@+id/container_components_Carb" />
 
+        <TextView
+            android:id="@+id/textView_Carb_Consumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:elevation="11dp"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Carb_Title"
+            app:layout_constraintTop_toTopOf="@+id/container_components_Carb" />
+
+        <TextView
+            android:id="@+id/textView_Carb_Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="16dp"
+            android:elevation="11dp"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Carb_Title"
+            app:layout_constraintTop_toTopOf="@+id/container_components_Carb" />
+
         <ProgressBar
-            android:id="@+id/progressbar2"
+            android:id="@+id/progressbar_Protein"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_progressbar_background"
             android:elevation="11dp"
-            android:max="100"
-            android:progress="40"
+            android:indeterminateOnly="false"
+            android:progress="20"
+            android:scrollbarSize="50dp"
             android:progressDrawable="@drawable/custom_progressbar_protein"
-
             app:layout_constraintBottom_toBottomOf="@+id/container_components_Carb3"
             app:layout_constraintEnd_toEndOf="@+id/container_components_Carb3"
             app:layout_constraintStart_toStartOf="@+id/container_components_Carb3"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Protein_Title" />
 
         <View
             android:id="@+id/container_components"
@@ -176,12 +199,12 @@
             app:layout_constraintTop_toBottomOf="@+id/container_components" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_Calories"
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:elevation="11dp"
             android:indeterminateOnly="false"
-            android:progress="60"
+            android:progress="0"
             android:progressDrawable="@drawable/circle"
             android:scrollbarSize="50dp"
             app:layout_constraintEnd_toEndOf="@+id/container_components"
@@ -199,6 +222,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"
             android:textSize="34sp"
+<<<<<<< Updated upstream
             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="@+id/progressBar"
             app:layout_constraintStart_toStartOf="@+id/progressBar"
@@ -217,10 +241,16 @@
             app:layout_constraintEnd_toEndOf="@+id/progressBar"
             app:layout_constraintStart_toStartOf="@+id/progressBar"
             app:layout_constraintTop_toBottomOf="@+id/text_view_progress" />
+=======
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_Calories"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_Calories"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_Calories"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_Calories" />
+>>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/textView8"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="11dp"
@@ -232,7 +262,7 @@
             app:layout_constraintTop_toTopOf="@+id/container_components" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/textView_Protein_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -245,16 +275,29 @@
             app:layout_constraintTop_toTopOf="@+id/container_components_Carb3" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textView_Protein_Consumed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:elevation="11dp"
-            android:text="40%"
-            android:textColor="#202020"
+            android:text="2"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/container_components_Carb3"
+            app:layout_constraintStart_toEndOf="@+id/textView_Protein_Title"
+            app:layout_constraintTop_toTopOf="@+id/container_components_Carb3" />
+
+        <TextView
+            android:id="@+id/textView_Protein_Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="244dp"
+            android:layout_marginTop="16dp"
+            android:elevation="11dp"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Protein_Title"
             app:layout_constraintTop_toTopOf="@+id/container_components_Carb3" />
 
 
