@@ -33,9 +33,9 @@ public class User {
         this.weight = weight;
         this.fat = fat;
         this.activity = activity;
-        this.proteinConsumption = proteinConsumption;
-        this.carbConsumption = carbConsumption;
-        this.fatConsumption = fatConsumption;
+        this.proteinConsumption = calculateProteinConsumption((int)weight);
+        this.carbConsumption = calculateCarbConsumption(proteinConsumption, fatConsumption, totalMetabolicRate);
+        this.fatConsumption = calculateFatConsumption((int)weight);
         this.gender = gender;
         this.basalMetabolicRate = calculateBasalMetabolicRate(weight, height, age, gender);
         this.totalMetabolicRate = calculateTotalMetabolicRate(basalMetabolicRate, activity);
@@ -100,6 +100,25 @@ public class User {
                 break;
         }
         return totalMetabolicRate.intValue();
+    }
+
+    public static int calculateProteinConsumption(int weight)
+    {
+        return weight * 2;
+    }
+
+    public static int calculateCarbConsumption(int proteinConsumption, int fatConsumption, int totalMetabolicRate)
+    {
+        int proteinConsumedInCal = proteinConsumption * 4;
+        int fatConsumedInCal = fatConsumption * 9;
+        int totalCaloriesToConsume = (totalMetabolicRate - (int)(totalMetabolicRate * 0.2));
+
+        return (totalCaloriesToConsume - proteinConsumedInCal - fatConsumedInCal) / 4;
+    }
+
+    public static int calculateFatConsumption(int weight)
+    {
+        return (int)(weight * 0.8);
     }
 
 }
