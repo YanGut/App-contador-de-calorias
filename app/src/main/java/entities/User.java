@@ -113,7 +113,7 @@ public class User {
         int fatConsumedInCal = fatConsumption * 9;
         int totalCaloriesToConsume = (totalMetabolicRate - (int)(totalMetabolicRate * 0.2));
 
-        return (totalCaloriesToConsume - proteinConsumedInCal - fatConsumedInCal) / 4;
+        return (totalCaloriesToConsume - proteinConsumedInCal - fatConsumedInCal) / 8;
     }
 
     public static int calculateFatConsumption(int weight)
