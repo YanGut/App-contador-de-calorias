@@ -35,10 +35,7 @@ public class HomeFragment extends Fragment {
 
     public TextView caloriasRestantes, caloriasTotais;
     ArrayList<Food> foodArrayList;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String userId = user.getUid();
-    Double totalCal;
+    int totalCal;
     int totalCalToShow;
     int totalProtein;
     int totalCarb;
@@ -80,20 +77,21 @@ public class HomeFragment extends Fragment {
     public void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState != null) {
-            totalCalToShow = savedInstanceState.getInt(CALORIAS_RESTANTES_KEY);
-        }
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        showAllUserParameters();
+//        if(savedInstanceState != null) {
+//            totalCalToShow = savedInstanceState.getInt(CALORIAS_RESTANTES_KEY);
+//        }
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        showAllUserParameters(user);
 
         foodArrayList = new ArrayList<Food>();
 
-        EventChangeListener();
+        EventChangeListener(user);
     }
 
     @Override
@@ -108,15 +106,16 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState)
-    {
-        super.onSaveInstanceState(outState);
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState)
+//    {
+//        super.onSaveInstanceState(outState);
+//
+//        outState.putInt(CALORIAS_RESTANTES_KEY, totalCalToShow);
+//    }
 
-        outState.putInt(CALORIAS_RESTANTES_KEY, totalCalToShow);
-    }
-
-    public void showAllUserParameters() {
+    public void showAllUserParameters(FirebaseUser user) {
+        String userId = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userId);
 
@@ -129,9 +128,9 @@ public class HomeFragment extends Fragment {
                 totalCarb = userLog.carbConsumption;
                 totalFat = userLog.fatConsumption;
 
-                totalCal = (totalMetabolicRate - (totalMetabolicRate * 0.2));
+                totalCal = (totalMetabolicRate - ((int)(totalMetabolicRate * 0.2)));
 
-                caloriasTotais.setText("Total de calorias: " + totalCal.intValue());
+                caloriasTotais.setText("Total de calorias: " + totalCal);
             } else {
                 Log.d(TAG, "No such document");
             }
@@ -139,7 +138,9 @@ public class HomeFragment extends Fragment {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void EventChangeListener(){
+    public void EventChangeListener(FirebaseUser user){
+        String userId = user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("diary").document(userId);
 
         for (int i = 0; i < 4; i++) {
@@ -173,9 +174,9 @@ public class HomeFragment extends Fragment {
             totalCalories += f.calories;
         }
 
-        totalCalToShow = (int)(totalCal - totalCalories);
+        totalCalToShow = (totalCal - totalCalories);
 
-        caloriasRestantes.setText(totalCalToShow);
+        caloriasRestantes.setText(String.valueOf(totalCalToShow));
     }
 
     public void sumProtein(ArrayList<Food> foodArrayList) {
