@@ -212,21 +212,38 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
-            android:id="@+id/text_view_progress"
+            android:id="@+id/Calorias_Restantes_Text"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="24dp"
             android:elevation="11dp"
             android:text="2.000"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"
             android:textSize="34sp"
-<<<<<<< Updated upstream
-            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar"
-            app:layout_constraintStart_toStartOf="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="@+id/progressBar" />
+            app:layout_constraintBottom_toBottomOf="@+id/container_components"
+            app:layout_constraintEnd_toEndOf="@+id/container_components"
+            app:layout_constraintStart_toStartOf="@+id/container_components"
+            app:layout_constraintTop_toTopOf="@+id/container_components" />
+
+        <TextView
+            android:id="@+id/Total_Calorias_Text"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="114dp"
+            android:elevation="11dp"
+            android:text="Calorias totais: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/container_components"
+            app:layout_constraintEnd_toEndOf="@+id/container_components"
+            app:layout_constraintStart_toStartOf="@+id/container_components"
+            app:layout_constraintTop_toTopOf="@+id/container_components" />
 
         <TextView
             android:id="@+id/text_view_calories"
@@ -238,16 +255,12 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar"
-            app:layout_constraintStart_toStartOf="@+id/progressBar"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_progress" />
-=======
+            app:layout_constraintTop_toBottomOf="@+id/Calorias_Restantes_Text"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar_Calories"
             app:layout_constraintEnd_toEndOf="@+id/progressBar_Calories"
             app:layout_constraintStart_toStartOf="@+id/progressBar_Calories"
             app:layout_constraintTop_toTopOf="@+id/progressBar_Calories" />
->>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/textView8"

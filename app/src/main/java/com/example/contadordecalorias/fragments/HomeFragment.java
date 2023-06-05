@@ -1,15 +1,17 @@
 package com.example.contadordecalorias.fragments;
 
+import static android.content.ContentValues.TAG;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-<<<<<<< Updated upstream
-=======
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
->>>>>>> Stashed changes
+
 
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +20,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.contadordecalorias.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+
+import entities.Food;
+import entities.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +38,6 @@ import com.example.contadordecalorias.R;
  */
 public class HomeFragment extends Fragment {
 
-<<<<<<< Updated upstream
-=======
     public TextView caloriasRestantes, caloriasTotais, proteinaConsumida, proteinaTotal, carboidratoConsumido, carboidratoTotal,
                     gorduraConsumida, gorduraTotal;
     public ProgressBar progressBarCalories, progressBarProtein, progressBarCarb, progressBarFat;
@@ -41,7 +51,6 @@ public class HomeFragment extends Fragment {
     int totalFat;
     int totalFatToShow;
 
->>>>>>> Stashed changes
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -80,8 +89,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-<<<<<<< Updated upstream
-=======
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -90,17 +97,13 @@ public class HomeFragment extends Fragment {
         foodArrayList = new ArrayList<Food>();
 
         EventChangeListener(user);
->>>>>>> Stashed changes
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-<<<<<<< Updated upstream
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
-=======
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         caloriasRestantes = view.findViewById(R.id.Calorias_Restantes_Text);
@@ -244,5 +247,4 @@ public class HomeFragment extends Fragment {
         gorduraConsumida.setText(String.valueOf(totalFats));
     }
 
->>>>>>> Stashed changes
 }
